@@ -33,7 +33,7 @@ class Construct:
         if data:
             return self.part1 + data + self.part2
         else:
-            data = '<p>Данных пока нет</p>'
+            data = '<p>Данных пока нет, чтобы они появились, пожалуйста, заполните форму на странице контакты.</p>'
             return self.part1 + data + self.part2
 
 
