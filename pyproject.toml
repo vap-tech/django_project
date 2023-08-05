@@ -6,6 +6,7 @@ authors = ["kot <bafomet2016vitt@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+Django = "^4.2.4"
 
 [tool.poetry.dev-dependencies]
 
