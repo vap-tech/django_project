@@ -1,0 +1,81 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Электроника",
+      "description": "Различные электронные приборы."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Продукты",
+      "description": "Различные продукты"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Стройматериалы",
+      "description": "Различные штуки для стройки"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Автозапчасти",
+      "description": "Запасные части для автомобилей"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "Мебель",
+      "description": "Мебель для дома"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Телевизор",
+      "description": "Позволяет смотреть передачи",
+      "preview": "products/2023-07-30_01-25.jpg",
+      "category": 1,
+      "price": 1500,
+      "created_date": "2023-08-11T06:00:00Z",
+      "last_modified_date": "2023-08-13T11:00:34Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Диван",
+      "description": "Позволяет лежать",
+      "preview": "",
+      "category": 5,
+      "price": 1800,
+      "created_date": "2023-08-09T06:00:00Z",
+      "last_modified_date": "2023-08-13T13:38:06Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Двигатель",
+      "description": "Сердце автомобиля",
+      "preview": "",
+      "category": 4,
+      "price": 2300,
+      "created_date": "2023-08-01T13:38:54Z",
+      "last_modified_date": "2023-08-13T18:00:00Z"
+    }
+  }
+]
