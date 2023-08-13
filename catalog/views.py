@@ -2,12 +2,18 @@ from django.shortcuts import render
 
 
 from catalog.function import construct_html, JsonC
+from catalog.models import Product
+
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'catalog/home.html')
+    product_list = Product.objects.all()
+    context = {
+        'object_list': product_list
+    }
+    return render(request, 'catalog/home.html', context)
 
 
 def messages(request):
@@ -24,11 +30,3 @@ def contacts(request):
         JsonC().to_file([{"name": name, "tel": tel, "email": email, "text": message}])
         construct_html()
     return render(request, 'catalog/contacts.html')
-
-
-def sidebar_css(request):
-    return render(request, 'catalog/sidebars.css')
-
-
-def sidebar_js(request):
-    return render(request, 'catalog/sidebars.js')
