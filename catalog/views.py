@@ -6,15 +6,6 @@ from catalog.function import construct_html, JsonC
 # Create your views here.
 
 
-def index(request):
-    if request.method == 'POST':
-        name = request.POST.get('Name')
-        email = request.POST.get('Email')
-        message = request.POST.get('Tel')
-        print(name, email, message)
-    return render(request, 'catalog/index.html')
-
-
 def home(request):
     return render(request, 'catalog/home.html')
 
