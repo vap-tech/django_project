@@ -16,6 +16,14 @@ def home(request):
     return render(request, 'catalog/home.html', context)
 
 
+def product(request, product_pk):
+    product_list = Product.objects.get(pk=product_pk)
+    context = {
+        'object': product_list
+    }
+    return render(request, 'catalog/product.html', context)
+
+
 def messages(request):
     return render(request, 'catalog/messages.html')
 

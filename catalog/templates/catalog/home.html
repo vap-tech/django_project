@@ -25,6 +25,7 @@
                             {{ object.description|truncatechars:100 }}
                         </p>
                         <img src="{{ object.preview|media_path }}" height="100" width="100">
+                        <a href="product/{{ object.pk }}" class="btn btn-primary stretched-link">Подробнее</a>
                         <button type="button" class="w-100 btn btn-lg btn-primary">Купить</button>
                     </div>
                 </div>
