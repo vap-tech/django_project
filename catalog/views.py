@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-
 from catalog.function import construct_html, JsonC
 from catalog.models import Product
 

@@ -1,4 +1,5 @@
 from django.urls import path
+
 from catalog.views import home, contacts, messages, product
 
 from catalog.apps import CatalogConfig
