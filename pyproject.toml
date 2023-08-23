@@ -7,6 +7,9 @@ authors = ["kot <bafomet2016vitt@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 Django = "^4.2.4"
+psycopg2 = "^2.9.7"
+Pillow = "^10.0.0"
+ipython = "^8.14.0"
 
 [tool.poetry.dev-dependencies]
 
