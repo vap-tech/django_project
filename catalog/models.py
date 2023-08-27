@@ -40,3 +40,13 @@ class Feedback(models.Model):
     phone = models.CharField(max_length=25, verbose_name='Телефон')
     email = models.CharField(max_length=100, verbose_name='Почта')
     message = models.TextField(verbose_name='Сообщение')
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=150, verbose_name='заголовок')
+    slug = models.CharField(max_length=200, verbose_name='ЧПУ')
+    content = models.TextField(verbose_name='Содержимое')
+    preview = models.ImageField(upload_to='blogs/', verbose_name='превью', **NULLABLE)
+    created_date = models.DateTimeField(verbose_name='дата создания')
+    is_public = models.BooleanField(verbose_name='опубликовано или нет')
+    views_count = models.IntegerField(verbose_name='количество просмотров')
