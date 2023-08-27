@@ -33,3 +33,10 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ('name',)
+
+
+class Feedback(models.Model):
+    name = models.CharField(max_length=150, verbose_name='Имя')
+    phone = models.CharField(max_length=25, verbose_name='Телефон')
+    email = models.CharField(max_length=100, verbose_name='Почта')
+    message = models.TextField(verbose_name='Сообщение')

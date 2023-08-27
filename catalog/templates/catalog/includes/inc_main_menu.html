@@ -1,24 +1,24 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-    <a href="{% url 'catalog:home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <a href="{% url 'catalog:category' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi pe-none me-2" width="40" height="32">
-            <use xlink:href="#bootstrap"/>
+            <use href="#bootstrap"></use>
         </svg>
         <span class="fs-4">Мой сайт.ру</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="{% url 'catalog:home' %}" class="nav-link active" aria-current="page">
+            <a href="{% url 'catalog:category' %}" class="nav-link active" aria-current="page">
                 <svg class="bi pe-none me-2" width="16" height="16">
-                    <use xlink:href="#home"/>
+                    <use href="#home"></use>
                 </svg>
-                Домашняя
+                Каталог
             </a>
         </li>
         <li>
-            <a href="#2" class="nav-link text-white">
+            <a href="{% url 'catalog:category' %}" class="nav-link text-white">
                 <svg class="bi pe-none me-2" width="16" height="16">
-                    <use xlink:href="#speedometer2"/>
+                    <use href="#speedometer2"></use>
                 </svg>
                 Dashboard
             </a>
@@ -26,23 +26,23 @@
         <li>
             <a href="{% url 'catalog:messages' %}" class="nav-link text-white">
                 <svg class="bi pe-none me-2" width="16" height="16">
-                    <use xlink:href="#table"/>
+                    <use href="#table"></use>
                 </svg>
                 Сообщения
             </a>
         </li>
         <li>
-            <a href="#4" class="nav-link text-white">
+            <a href="{% url 'catalog:category' %}" class="nav-link text-white">
                 <svg class="bi pe-none me-2" width="16" height="16">
-                    <use xlink:href="#grid"/>
+                    <use href="#grid"></use>
                 </svg>
-                Products
+                Категории
             </a>
         </li>
         <li>
-            <a href="{% url 'catalog:contacts' %}" class="nav-link text-white">
+            <a href="{% url 'catalog:feedback-create' %}" class="nav-link text-white">
                 <svg class="bi pe-none me-2" width="16" height="16">
-                    <use xlink:href="#people-circle"/>
+                    <use href="#people-circle"></use>
                 </svg>
                 Контакты
             </a>
