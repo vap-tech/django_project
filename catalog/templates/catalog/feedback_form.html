@@ -20,7 +20,11 @@
                         <form method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <button type="submit" class="btn btn-primary">Свяжитесь со мной!</button>
+                            {% if object %}
+                                <button type="submit" class="btn btn-primary">Изменить</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary">Создать</button>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
