@@ -16,7 +16,10 @@
                     <p>
                         {{ object.description}}
                     </p>
+
+                    {% if object.preview %}
                     <img src="{{ object.preview|media_path }}" alt="Изображение - {{ object.name|lower }}">
+                    {% endif %}
                     <button type="button" class="w-100 btn btn-lg btn-primary">Купить</button>
                 </div>
             </div>
