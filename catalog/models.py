@@ -41,6 +41,13 @@ class Feedback(models.Model):
     email = models.CharField(max_length=100, verbose_name='Почта')
     message = models.TextField(verbose_name='Сообщение')
 
+    def __str__(self):
+        return f'{self.name}: {self.message[:30]}'
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
 
 class Blog(models.Model):
     title = models.CharField(max_length=150, verbose_name='заголовок')
@@ -50,3 +57,10 @@ class Blog(models.Model):
     created_date = models.DateTimeField(verbose_name='дата создания')
     is_public = models.BooleanField(default=True, verbose_name='опубликовано или нет')
     views_count = models.IntegerField(default=0, verbose_name='количество просмотров')
+
+    def __str__(self):
+        return f'{self.title} {self.content[:50]}'
+
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
