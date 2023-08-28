@@ -1,6 +1,6 @@
 from slugify import slugify
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from catalog.models import Product, Category, Feedback, Blog
 
@@ -91,3 +91,9 @@ class BlogUpdateView(UpdateView):
         new_url = super().get_success_url()
         new_url += self.object.slug
         return new_url
+
+
+class BlogDeleteView(DeleteView):
+    model = Blog
+    success_url = reverse_lazy('catalog:blog')
+

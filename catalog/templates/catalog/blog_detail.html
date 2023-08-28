@@ -19,7 +19,8 @@
                     <img src="{{ object.preview|media_path }}" alt="Изображение - {{ object.title|lower }}">
                     {% endif %}
 
-                    <a href="update/" class="w-100 btn btn-lg btn-primary">Редактировать</a>
+                    <a href="update/" class="w-100 mb-2 btn btn-lg btn-primary">Редактировать</a>
+                    <a href="delete/" class="w-100 mb-2 btn btn-lg btn-primary">Удалить</a>
                 </div>
 
                 <div class="card-footer">Просмотры: {{ object.views_count }} </div>
