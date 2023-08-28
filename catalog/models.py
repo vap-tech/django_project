@@ -48,5 +48,5 @@ class Blog(models.Model):
     content = models.TextField(verbose_name='Содержимое')
     preview = models.ImageField(upload_to='blogs/', verbose_name='превью', **NULLABLE)
     created_date = models.DateTimeField(verbose_name='дата создания')
-    is_public = models.BooleanField(verbose_name='опубликовано или нет')
-    views_count = models.IntegerField(verbose_name='количество просмотров')
+    is_public = models.BooleanField(default=True, verbose_name='опубликовано или нет')
+    views_count = models.IntegerField(default=0, verbose_name='количество просмотров')
