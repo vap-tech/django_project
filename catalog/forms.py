@@ -28,9 +28,21 @@ class ProductForm(forms.ModelForm):
                 raise forms.ValidationError(f'Запрещено использовать слово {cleaned_data}')
         return cleaned_data
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
 
 class VersionForm(forms.ModelForm):
 
     class Meta:
         model = Version
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field_name == 'is_current_version':
+                continue
+            field.widget.attrs['class'] = 'form-control'
