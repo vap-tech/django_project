@@ -23,7 +23,7 @@
                             <p>
                                 {{ object.content|truncatechars:100 }}
                             </p>
-                            <a href="{{ object.slug }}" class="w-100 btn btn-lg btn-primary">Подробнее</a>
+                            <a href="{% url 'catalog:blog-detail' object.slug %}" class="w-100 btn btn-lg btn-primary">Подробнее</a>
 
                         </div>
                     </div>
