@@ -4,26 +4,55 @@
 
 {% block content %}
 
-<main class="row">
-    <div class="row text-center">
+    <header>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal text-body-emphasis">Продукты</h1>
+            <p class="fs-5 text-body-secondary">Продукты в категории.</p>
+        </div>
+    </header>
 
-            <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                    <h4 class="my-0 fw-normal">{{ object.name|title }}</h4>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title pricing-card-title">${{ object.price }}</h2>
-                    <p>
-                        {{ object.description}}
-                    </p>
 
-                    {% if object.preview %}
-                    <img src="{{ object.preview|media_path }}" alt="Изображение - {{ object.name|lower }}">
-                    {% endif %}
-                    <button type="button" class="w-100 btn btn-lg btn-primary">Купить</button>
+    <main class="row">
+        <div class="row text-center">
+            <div class="col-6">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">{{ object.name|title }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title pricing-card-title">${{ object.price }}</h2>
+                        <p>
+                            {{ object.description }}
+                        </p>
+
+                        {% if object.preview %}
+                            <img src="{{ object.preview|media_path }}" alt="Изображение - {{ object.name|lower }}">
+                        {% endif %}
+
+                        {% for i in object.version_set.all %}
+                            {% if i.is_current_version %}
+                                v.{{ i.ver_number }} - {{ i.ver_name }}
+                            {% endif %}
+                        {% endfor %}
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'catalog:product-update' object.pk %}"
+                                       class="btn btn-primary">Редактировать</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'catalog:product-delete' object.pk %}"
+                                       class="btn btn-danger">Удалить</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
-
-    </div>
-</main>
+        </div>
+    </main>
 {% endblock %}

@@ -1,45 +1,13 @@
+from django.forms import inlineformset_factory
 from slugify import slugify
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
-from catalog.models import Product, Category, Feedback, Blog
-
-# Create your views here.
-
-
-class CategoryListView(ListView):
-    model = Category
+from catalog.forms import ProductForm, VersionForm
+from catalog.models import Product, Category, Feedback, Blog, Version
 
 
-class ProductListView(ListView):
-    model = Product
-
-
-class FeedbackListView(ListView):
-    model = Feedback
-
-
-class BlogListView(ListView):
-    model = Blog
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(is_public=True)
-        return queryset
-
-
-class ProductDetailView(DetailView):
-    model = Product
-
-
-class BlogDetailView(DetailView):
-    model = Blog
-
-    def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        self.object.views_count += 1
-        self.object.save()
-        return self.object
+# Category:
 
 
 class CategoryCreateView(CreateView):
@@ -48,18 +16,78 @@ class CategoryCreateView(CreateView):
     success_url = reverse_lazy('catalog:category')
 
 
+class CategoryListView(ListView):
+    model = Category
+
+
+# Product:
+
+
 class ProductCreateView(CreateView):
     model = Product
-    fields = (
-        'name', 'description', 'preview', 'category', 'price', 'created_date', 'last_modified_date',
-    )
+    form_class = ProductForm
     success_url = reverse_lazy('catalog:product')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+
+    def get_success_url(self):
+        return reverse('catalog:product-update', args=[self.kwargs.get('pk')])
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        VersionFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
+        if self.request.method == 'POST':
+            formset = VersionFormset(self.request.POST, instance=self.object)
+        else:
+            formset = VersionFormset(instance=self.object)
+
+        context_data['formset'] = formset
+
+        return context_data
+
+    def form_valid(self, form):
+
+        context_data = self.get_context_data()
+        formset = context_data['formset']
+        self.object = form.save()
+
+        if formset.is_valid():
+            formset.instance = self.object
+            formset.save()
+
+        return super().form_valid(form)
+
+
+class ProductListView(ListView):
+    model = Product
+
+
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('catalog:product')
+
+
+# Feedback
 
 
 class FeedbackCreateView(CreateView):
     model = Feedback
     fields = ('name', 'phone', 'email', 'message')
     success_url = reverse_lazy('catalog:category')
+
+
+class FeedbackListView(ListView):
+    model = Feedback
+
+
+# Blog:
 
 
 class BlogCreateView(CreateView):
@@ -73,6 +101,27 @@ class BlogCreateView(CreateView):
             new_blog.slug = slugify(new_blog.title)
             new_blog.save()
             return super().form_valid(form)
+
+
+class BlogListView(ListView):
+    model = Blog
+
+    def get_queryset(self):
+        """Фильтрация по флагу опубликовано"""
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_public=True)
+        return queryset
+
+
+class BlogDetailView(DetailView):
+    model = Blog
+
+    def get_object(self, queryset=None):
+        """Счетчик просмотров"""
+        self.object = super().get_object(queryset)
+        self.object.views_count += 1
+        self.object.save()
+        return self.object
 
 
 class BlogUpdateView(UpdateView):
