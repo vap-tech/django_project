@@ -6,7 +6,13 @@
 
     <header>
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-            <p class="fs-5 text-body-secondary">Форма для продукта.</p>
+            <p class="fs-5 text-body-secondary">
+                {% if object %}
+                    Изменение
+                {% else %}
+                    Создание
+                {% endif %}
+                продукта.</p>
         </div>
     </header>
 
@@ -34,6 +40,9 @@
 
                     {% for form in formset.forms %}
                         {{ form.as_p }}
+                        {% if not forloop.last %}
+                            <hr>
+                        {% endif %}
                     {% endfor %}
 
 

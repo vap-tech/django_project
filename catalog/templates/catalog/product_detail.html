@@ -28,10 +28,28 @@
                         {% if object.preview %}
                             <img src="{{ object.preview|media_path }}" alt="Изображение - {{ object.name|lower }}">
                         {% endif %}
-                        <a href="{% url 'catalog:product-update' object.pk %}"
-                           class="w-100 mb-2 btn btn-lg btn-primary">Редактировать</a>
-                        <a href="{% url 'catalog:product-delete' object.pk %}"
-                           class="w-100 mb-2 btn btn-lg btn-danger">Удалить</a>
+
+                        {% for i in object.version_set.all %}
+                            {% if i.is_current_version %}
+                                v.{{ i.ver_number }} - {{ i.ver_name }}
+                            {% endif %}
+                        {% endfor %}
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'catalog:product-update' object.pk %}"
+                                       class="btn btn-primary">Редактировать</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'catalog:product-delete' object.pk %}"
+                                       class="btn btn-danger">Удалить</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -23,12 +23,21 @@
                             <h2 class="card-title pricing-card-title">${{ object.price }}</h2>
                             <p>
                                 {{ object.description|truncatechars:100 }}
+
+                                {% for i in object.version_set.all %}
+                                    {% if i.is_current_version %}
+                                        v.{{ i.ver_number }} - {{ i.ver_name }}
+                                    {% endif %}
+                                {% endfor %}
                             </p>
                             {% if object.preview %}
                                 <img src="{{ object.preview|media_path }}" alt="Изображение - {{ object.name|lower }}">
                             {% endif %}
 
-                            <a href="{{ object.pk }}" class="w-100 btn btn-lg btn-primary">Подробнее</a>
+
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ object.pk }}" class="btn btn-outline-primary">Подробнее</a>
                         </div>
                     </div>
                 </div>
