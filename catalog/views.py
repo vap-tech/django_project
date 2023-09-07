@@ -3,7 +3,7 @@ from slugify import slugify
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, FeedbackForm
 from catalog.models import Product, Category, Feedback, Blog, Version
 
 
@@ -79,7 +79,7 @@ class ProductDeleteView(DeleteView):
 
 class FeedbackCreateView(CreateView):
     model = Feedback
-    fields = ('name', 'phone', 'email', 'message')
+    form_class = FeedbackForm
     success_url = reverse_lazy('catalog:category')
 
 
