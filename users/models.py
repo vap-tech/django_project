@@ -9,6 +9,9 @@ class Country(models.Model):
     description = models.TextField(max_length=200, verbose_name='описание')
     flag = models.ImageField(upload_to='users/country/', verbose_name='превью', **NULLABLE)
 
+    def __str__(self):
+        return f'{self.country}'
+
     class Meta:
         verbose_name = 'Страна'
         verbose_name_plural = 'Страны'
