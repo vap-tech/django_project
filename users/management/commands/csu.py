@@ -14,5 +14,5 @@ class Command(BaseCommand):
             is_staff=True,
             is_superuser=True,
         )
-        user.set_password('225388')
+        user.set_password('os.getenv')
         user.save()
