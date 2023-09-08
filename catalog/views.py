@@ -69,7 +69,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
 
 
@@ -91,14 +91,14 @@ class FeedbackCreateView(CreateView):
     success_url = reverse_lazy('catalog:category')
 
 
-class FeedbackListView(ListView):
+class FeedbackListView(LoginRequiredMixin, ListView):
     model = Feedback
 
 
 # Blog:
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(LoginRequiredMixin, CreateView):
     model = Blog
     fields = ('title', 'content', 'preview', 'created_date', 'is_public', 'views_count',)
     success_url = reverse_lazy('catalog:blog')
@@ -132,7 +132,7 @@ class BlogDetailView(DetailView):
         return self.object
 
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = Blog
     fields = ('title', 'content', 'preview', 'created_date', 'is_public', 'views_count',)
     success_url = reverse_lazy('catalog:blog')
@@ -150,6 +150,6 @@ class BlogUpdateView(UpdateView):
         return new_url
 
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy('catalog:blog')
