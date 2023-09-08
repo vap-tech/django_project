@@ -1,5 +1,6 @@
 from django.db import models, transaction
-from django.db.models import UniqueConstraint, Q
+from config.settings import AUTH_USER_MODEL as AU_MODEL
+
 
 NULLABLE = {'null': True, 'blank': True}
 
@@ -25,6 +26,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='цена')
     created_date = models.DateTimeField(verbose_name='дата создания')
     last_modified_date = models.DateTimeField(verbose_name='дата изменения')
+
+    creator = models.ForeignKey(AU_MODEL, on_delete=models.SET_NULL, verbose_name='создатель', **NULLABLE)
 
     def __str__(self):
         return f'{self.name} {self.category} {self.price}'

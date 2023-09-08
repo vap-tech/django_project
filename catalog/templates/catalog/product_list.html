@@ -30,6 +30,11 @@
                                     {% endif %}
                                 {% endfor %}
                             </p>
+
+                            <p>
+                                Создатель {{ object.creator|default:'не указан' }}
+                            </p>
+
                             {% if object.preview %}
                                 <img src="{{ object.preview|media_path }}" alt="Изображение - {{ object.name|lower }}">
                             {% endif %}
