@@ -16,7 +16,7 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ['creator']
 
     def clean_name(self):
         """Валидация поля name"""
