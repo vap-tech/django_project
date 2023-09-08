@@ -135,8 +135,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/users/'
 
-EMAIL_HOST = 'mail.v-petrenko.ru'
+EMAIL_HOST = os.getenv('smtp_host')
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'admin@v-petrenko.ru'
-EMAIL_HOST_PASSWORD = 'xgN3KXRdcYcq'
+EMAIL_HOST_USER = os.getenv('mail')
+EMAIL_HOST_PASSWORD = os.getenv('pass')
