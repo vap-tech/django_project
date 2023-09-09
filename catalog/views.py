@@ -1,9 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.forms import inlineformset_factory
 from slugify import slugify
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
+import config.settings
 from catalog.forms import ProductForm, VersionForm, FeedbackForm
 from catalog.models import Product, Category, Feedback, Blog, Version
 
@@ -19,6 +21,12 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
 
 class CategoryListView(ListView):
     model = Category
+
+    def get_queryset(self):
+        if config.settings.CACHE_ENABLE:
+            return cache.get_or_set('category_list', super().get_queryset())
+        else:
+            return super().get_queryset()
 
 
 # Product:
