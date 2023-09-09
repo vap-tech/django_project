@@ -141,3 +141,12 @@ EMAIL_HOST = os.getenv('smtp_host')
 EMAIL_PORT = 25
 EMAIL_HOST_USER = os.getenv('mail')
 EMAIL_HOST_PASSWORD = os.getenv('pass')
+
+CACHE_ENABLE = True
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}
