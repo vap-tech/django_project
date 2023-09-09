@@ -12,6 +12,7 @@ Pillow = "^10.0.0"
 ipython = "^8.14.0"
 python-slugify = "^8.0.1"
 redis = "^5.0.0"
+python-dotenv = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 
